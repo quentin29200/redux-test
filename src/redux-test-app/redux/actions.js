@@ -6,7 +6,33 @@
  *  - fetch books array
  * @return {ThunkActionCreator}
  */
-var fetchBooks = () => {
+var fetchBooks = () => { 
+  return async (dispatch, getState) => {
+    try {
+      dispatch({ type: FETCH_BOOKS_REQUEST })
+      const books = await (await fetch(`${config.back.books}`)).json()
+
+      dispatch({
+        type: FETCH_BOOKS_SUCCESS,
+        books: books,
+        isRead: true,
+      })
+    } catch (e) {
+      _logError(e, FETCH_BOOKS_FAILURE, getState())
+      dispatch({
+        type: FETCH_BOOKS_FAILURE,
+        errorMsg: e,
+      })
+    }
+  }
+}
+
+/**
+ * Public thunk action creator :
+ *  - fetch books array
+ * @return {ThunkActionCreator}
+ */
+var newBooks = () => {
   console.log("yolo")
   
   return async (dispatch, getState) => {
