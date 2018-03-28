@@ -1,0 +1,6 @@
+'use strict'
+/* eslint-disable no-unused-vars */
+
+var FETCH_BOOKS_REQUEST = 'FETCH_BOOKS_REQUEST'
+var FETCH_BOOKS_SUCCESS = 'FETCH_BOOKS_SUCCESS'
+var FETCH_BOOKS_FAILURE = 'FETCH_BOOKS_FAILURE'

@@ -1,0 +1,18 @@
+{
+  "entrypoint": "index.html",
+  "shell": "src/redux-test-app/redux-test-app.html",
+  "sources": [
+    "src/**/*"
+  ],
+  "extraDependencies": [
+    "manifest.json",
+    "bower_components/webcomponentsjs/*.js",
+    "data/*"
+  ],
+
+  "lint": {
+    "rules": [
+      "polymer-2"
+    ]
+  }
+}

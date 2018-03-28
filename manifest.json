@@ -1,0 +1,6 @@
+{
+  "name": "redux-test",
+  "short_name": "redux-test",
+  "start_url": "/",
+  "display": "standalone"
+}
