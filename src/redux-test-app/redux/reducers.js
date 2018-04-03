@@ -22,6 +22,23 @@ const bookNewProps = action => {
   }[action.type]
 }
 
+/**
+ * addBook
+ * @param  {ReduxActionObject} action
+ * @return {Object}       
+ */
+const addBook = (state, action) => {
+  return {
+    ADD_BOOK_SUCCESS: {
+        books: [...state.books, action.book],
+    },
+    ADD_BOOK_FAILURE: {
+        errorMsg: action.errorMsg + '',
+    },
+  }[action.type]
+}
+
+
 
 /**
  * Redux Reducer
@@ -34,7 +51,7 @@ var reducers = (state, action) => {
   const setInImmutable = (state, prop) => Object.assign({}, state, prop)
 
   let newProps = (
-    bookNewProps(action)
+    bookNewProps(action) || addBook(state,action)
   )
 
 

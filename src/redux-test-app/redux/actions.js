@@ -32,23 +32,21 @@ var fetchBooks = () => {
  *  - fetch books array
  * @return {ThunkActionCreator}
  */
-var newBooks = () => {
-  console.log("yolo")
-  
+var newBook = (book) => { 
   return async (dispatch, getState) => {
     try {
-      dispatch({ type: FETCH_BOOKS_REQUEST })
-      const books = await (await fetch(`${config.back.books}`)).json()
+      dispatch({ type: ADD_BOOK_REQUEST })
+      //Call API
+      //const books = await (await fetch(`${config.back.books}`)).json()
 
       dispatch({
-        type: FETCH_BOOKS_SUCCESS,
-        books: books,
-        isRead: true,
+        type: ADD_BOOK_SUCCESS,
+        book: book
       })
-    } catch (e) {
-      _logError(e, FETCH_BOOKS_FAILURE, getState())
+    } catch (e) {    
+      _logError(e, ADD_BOOK_FAILURE, getState())
       dispatch({
-        type: FETCH_BOOKS_FAILURE,
+        type: ADD_BOOK_FAILURE,
         errorMsg: e,
       })
     }

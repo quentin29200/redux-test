@@ -47,6 +47,19 @@ const logger = (store) => (next) => (action) => {
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const middleware = applyMiddleware(thunk, errorHandler, logger)
 const store = createStore(allReducers, initialState, composeEnhancers(middleware))
-const ReduxMixin = PolymerRedux(store)
+const reduxMixin = PolymerRedux(store)
+
+/* @mixinFunction for polymer components */
+const dedupedReduxMixin = (superClass) => {
+ return class extends reduxMixin(superClass) {
+   static get actions() {
+     return {fetchBooks, newBook}
+   }
+ }
+}
+
+/* @mixinFunction */
+window.ReduxMixin = Polymer.dedupingMixin(dedupedReduxMixin)
+
 
 store.dispatch(fetchBooks())

@@ -11,13 +11,13 @@
       }
     </style>
     <h2>Hello [[prop1]]!</h2>
-    <template is="dom-repeat" items="{{books}}">
+    <template is="dom-repeat" items="[[books]]">
       <div>title: <span>{{item.title}}</span></div>
       <div>Author name: <span>{{item.author}}</span></div>
     </template>
     title<input id="title" type="text"></input>
     Author<input id="author" type="text"></input>
-    <button onclick="[[addBook]]">Add</button>
+    <button on-click="addBook">Add</button>
   </template>
   <script>
     /**
@@ -49,10 +49,10 @@
 
       addBook() {
         var newBook = {
-          title: this.$.title,
-          author: this.$.author
+          title: this.$.title.value,
+          author: this.$.author.value
         }
-        this.dispatch('newBook', newBook)
+        this.dispatch('newBook', newBook);
       }
     }
 
